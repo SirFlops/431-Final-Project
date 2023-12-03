@@ -286,7 +286,7 @@ def createReservation(pName,qty,cEmail):
         return False
 def reservation(pList,qtyList, cEmail):
     argList=list(zip(pList, qtyList))
-    reservationID=createReservation(argList[0][0],argList[0][1],cEmail)
+    reservationID=createReservation(argList[0][0],argList[0][1])
     if reservationID==False:
         print("Initial reservation failed")
         return False
@@ -473,7 +473,7 @@ if not fail:
             arg1=multiAskFor("product names")
             arg2=multiAskFor("product quantities")
             arg3=askFor(["customer email"])[0]
-            if reservation(arg1,arg2,arg3):
+            if resrvation(arg1,arg2,arg3):
                 print("operation successful")
         elif case=="clear reservation" or case=="remove reservation":
             arg3=askFor(["reservationID"])[0]
@@ -495,7 +495,7 @@ if not fail:
             else:
                 query=input("Are you sure? this will reset the entire database. To continue type \"confirm\"").lower()
                 if query=="confirm":
-                    if clearDatabase() or createTables():
+                    if clearDatabase() and createTables():
                         print("Operation Successful")
                     else:
                         print("operation failed")
